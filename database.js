@@ -6,19 +6,13 @@ let orders = [];
 
 function loadData() {
   try {
-    const productsPath = path.join(__dirname, 'products.json');
-    if (fs.existsSync(productsPath)) {
-      products = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
-    }
+    products = require('./products.json');
   } catch (e) {
     console.error("Error loading products", e);
   }
 
   try {
-    const ordersPath = path.join(__dirname, 'orders.json');
-    if (fs.existsSync(ordersPath)) {
-      orders = JSON.parse(fs.readFileSync(ordersPath, 'utf-8'));
-    }
+    orders = require('./orders.json');
   } catch (e) {
     console.error("Error loading orders", e);
   }

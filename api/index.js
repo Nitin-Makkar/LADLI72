@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const NodeCache = require('node-cache');
-const db = require('./database');
+const db = require('../database');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files (frontend)
-app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static(path.join(__dirname, '../')));
 
 // Initialize SQLite database
 db.initDb().then(() => {
@@ -138,7 +138,7 @@ app.put('/api/orders/:id', async (req, res) => {
 
 // Fallback to index.html for SPA routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
